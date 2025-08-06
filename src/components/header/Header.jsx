@@ -6,7 +6,7 @@ const Header = () => {
   const {profile} = user;
     return (<header>
         <ul>
-          <h1>Tienda de productos</h1>
+          <Link to={"/"}>Tienda de productos</Link>
           <span>{profile?.firstName}</span>
           <Link to={"/cart"}>Carrito</Link>
           <span>Credito ${profile?.credit}</span>
