@@ -1,14 +1,15 @@
 import React from "react";
-import image from "../../../public/img/image-product.jpg"
+import image from "../../../public/img/image-product.jpg";
+import AddToCartButton from "../addToCartButton/AddToCartButton";
 
-const Product = ({producto}) => {
+const Product = ({product}) => {
 
     return (
         <>
         <img src={image} width={100} height={150} />
-            <h3>{producto.title}</h3>
-            <h3>{producto.price}</h3>
-            <button>Agregar al carrito</button>
+            <h3>{product?.title}</h3>
+            <h3>{product?.price}</h3>
+            <AddToCartButton product={product}/>
         </>
     )
 };

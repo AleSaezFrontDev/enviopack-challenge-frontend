@@ -11,7 +11,7 @@ const ProductList = () => {
     return <main>
     <Title text="Catalogo" />
     <Filters />
-    {productos.map((producto) => <Product producto={producto} />)}
+    {productos.map((product) => <Product product={product} />)}
     </main>
 };
 
