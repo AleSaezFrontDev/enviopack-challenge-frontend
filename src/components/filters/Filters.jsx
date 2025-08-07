@@ -1,9 +1,8 @@
 import React from "react";
-import { useFilter } from "../../customHooks/useFilter";
 
-const Filters = () => {
+const Filters = ({filters}) => {
 
-    const {setInputValue} = useFilter();
+    const {setInputValue} = filters;
 
     return <div>
         <input onChange={({target}) => setInputValue(target.value)} placeholder="Buscar productos por nombre"></input>

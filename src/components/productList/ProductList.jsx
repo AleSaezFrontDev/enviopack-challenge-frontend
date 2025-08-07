@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "../product/Product";
 import Filters from "../filters/Filters";
 import Title from "../title";
@@ -6,27 +6,18 @@ import Pagination from "../pagination";
 import usePagination from "../../customHooks/usePagination";
 import { useFilter } from "../../customHooks/useFilter";
 
-const ProductList = () => {
+const ProductList = ({productos = []}) => {
 
-    const pagination = usePagination();
-    const {filteredProducts} = useFilter();
-    const {productos} = pagination;
-    // pagination debe enviarse desde este componente a los hijos para que compartan los mismos datos, por eso lo dejo aca.
-    
+    const [renderProducts, setRenderProducts] = useState(productos);
+    const pagination = usePagination(setRenderProducts);
+    const filters = useFilter(setRenderProducts);
+
     return <main>
     <Title text="Catalogo" />
-    <Filters />
+    <Filters filters={{...filters}} />
         <div>
       <ul>
-        {
-          filteredProducts.length > 0 ?
-          filteredProducts.map((product) => (
-            <Product key={product.id} product={product} />
-        ))
-        :
-          productos.map((product) => (
-            <Product key={product.id} product={product} />
-        ))}
+        {renderProducts.map((product) => <Product key={product.id} product={product} />)}
       </ul>
     </div>
     <Pagination pagination={{...pagination}}/>
