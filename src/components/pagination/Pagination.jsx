@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
+import { FilterContext } from "../../context/FilterContext";
 
-const Pagination = ({pagination}) => {
+const Pagination = () => {
 
-    const {handleBack, handleNext, page, total} = pagination;
+    const {handleBack, handleNext, page, total} = useContext(FilterContext);
 
     return <div>
         <button onClick={handleBack} disabled={page === 1}>

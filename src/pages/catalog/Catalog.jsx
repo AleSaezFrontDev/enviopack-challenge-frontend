@@ -1,14 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import ProductList from "../../components/productList";
-import { getProducts, serializeProducts } from "../../functions";
+import { FilterContext } from "../../context/FilterContext";
 
 const Catalog = () => {
-    const {productos} = getProducts();
-    // normalmente getProducts se ejecutaria en un useEffect pero en este caso no es asincronica la obtencion de datos asique no hace falta
-    const productsPaginated = serializeProducts(productos);
-    // rompo el array para simular los seis resultados
     
-    return <ProductList productos={productsPaginated} />
+    const {renderProducts} = useContext(FilterContext);
+
+    return <ProductList productos={renderProducts} />
 };
 
 export default Catalog;
