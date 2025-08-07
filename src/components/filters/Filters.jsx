@@ -3,7 +3,7 @@ import { FilterContext } from "../../context/FilterContext";
 
 const Filters = () => {
 
-    const {setInputValue} = useContext(FilterContext);
+    const {setInputValue, setSelect, onHandleSelect} = useContext(FilterContext);
 
     return <div>
         <input onChange={({target}) => {
@@ -12,10 +12,13 @@ const Filters = () => {
             
         }} placeholder="Buscar productos por nombre"></input>
         <span>Ordenar por</span>
-        <select>
-            <option>Seleccionar</option>
-            <option>Mas baratos</option>
-            <option>mas caros</option>
+        <select onChange={({target}) => {
+            setSelect(target.value);
+            onHandleSelect();
+        }}>
+            <option value={0}>Seleccionar</option>
+            <option value={1}>Mas baratos</option>
+            <option value={2}>mas caros</option>
         </select>
     </div>
 };

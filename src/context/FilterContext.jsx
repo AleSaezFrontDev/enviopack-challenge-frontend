@@ -12,11 +12,22 @@ const FilterProvider = ({children}) => {
     const [renderProducts, setRenderProducts] = useState([]);
     const [page, setPage] = useState(1);
     const [productsFilters, setProductsFilters] = useState([]);
+    const [select, setSelect] = useState(0);
     const [total, setTotal] = useState(Math.ceil(productos.productos.length / PRODUCTS_PER_PAGE));
 
     const refreshProducts = (data = productos, currentPage = page) => {
         const newProducts = paginatedProducts(currentPage, data);
         setRenderProducts(newProducts);
+    };
+
+    const onHandleSelect = () => {
+        console.log(renderProducts.sort((a, b) => a.price - b.price));
+        
+        switch(select) {
+            case 0: setRenderProducts(renderProducts);
+            case 1: setRenderProducts(renderProducts.sort((a, b) => b.price - a.price));
+            case 2: setRenderProducts(renderProducts.sort((a, b) => a.price - b.price));
+        };
     };
 
     const handleBack = () => {
@@ -52,7 +63,7 @@ const FilterProvider = ({children}) => {
         inputValue && onFilter();
     }, [inputValue]);
 
-    return <FilterContext.Provider value={{productos, renderProducts, page, total, inputValue, setPage, handleBack, handleNext, setInputValue}}>
+    return <FilterContext.Provider value={{productos, renderProducts, page, total, inputValue, setPage, handleBack, handleNext, setInputValue, setSelect, onHandleSelect}}>
         {children}
     </FilterContext.Provider>
 };
