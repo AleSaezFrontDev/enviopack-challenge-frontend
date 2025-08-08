@@ -7,28 +7,11 @@ export const FilterContext = createContext();
 const FilterProvider = ({children}) => {
 
     const PRODUCTS_PER_PAGE = 6;
-    // normalmente esta funcion iria en un useEffect o useCallback pero en este caso no es asincronica asique directamente traigo la data
     const [inputValue, setInputValue] = useState("");
     const [renderProducts, setRenderProducts] = useState([]);
     const [page, setPage] = useState(1);
-    const [productsFilters, setProductsFilters] = useState([]);
     const [select, setSelect] = useState(0);
     const [total, setTotal] = useState(Math.ceil(productos.productos.length / PRODUCTS_PER_PAGE));
-
-    const refreshProducts = (data = productos, currentPage = page) => {
-        const newProducts = paginatedProducts(currentPage, data);
-        setRenderProducts(newProducts);
-    };
-
-    const onHandleSelect = () => {
-        console.log(renderProducts.sort((a, b) => a.price - b.price));
-        
-        switch(select) {
-            case 0: setRenderProducts(renderProducts);
-            case 1: setRenderProducts(renderProducts.sort((a, b) => b.price - a.price));
-            case 2: setRenderProducts(renderProducts.sort((a, b) => a.price - b.price));
-        };
-    };
 
     const handleBack = () => {
         if (page > 1) setPage(page - 1);
@@ -39,33 +22,57 @@ const FilterProvider = ({children}) => {
     };
 
     const onFilter = () => {
-        if(inputValue === 1) {
+        let productCopy = [...productos.productos];
+        if(inputValue && inputValue !== 1) {
             // el 1 solo es para forzar a que se reinicie el listado y paginado en caso que haya eliminado el texto escrito en el buscador
-            refreshProducts(undefined, 1);
-            setPage(1);
-            setTotal(Math.ceil(productos.productos.length / PRODUCTS_PER_PAGE));
-            setProductsFilters([]);
-            setInputValue("");
-        } else {
-            const filter = productos.productos.filter((product) => product.title.toLowerCase().includes(inputValue));
-            setProductsFilters({productos: filter});
-            refreshProducts({productos: filter}, 1);
-            setPage(1);
-            setTotal(Math.ceil(filter.length / PRODUCTS_PER_PAGE));
-        }
+           productCopy = productCopy.filter((product) => product.title.toLowerCase().includes(inputValue.toLowerCase()));
+        };
+
+        if (select === 1) {
+        productCopy.sort((a, b) => b.price - a.price);
+        } else if (select === 2) {
+        productCopy.sort((a, b) => a.price - b.price);
+        };
+
+        setTotal(Math.ceil(productCopy.length / PRODUCTS_PER_PAGE));
+
+        const paginated = paginatedProducts(page, { productos: productCopy });
+        setRenderProducts(paginated);
     };
 
     useEffect(() => {
-        !inputValue ? refreshProducts() : refreshProducts(productsFilters);
-    }, [page]);
+        onFilter();
+    }, [inputValue, page, select]);
 
-    useEffect(() => {
-        inputValue && onFilter();
-    }, [inputValue]);
-
-    return <FilterContext.Provider value={{productos, renderProducts, page, total, inputValue, setPage, handleBack, handleNext, setInputValue, setSelect, onHandleSelect}}>
+    return <FilterContext.Provider value={{productos, renderProducts, page, total, inputValue, setPage, handleBack, handleNext, setInputValue, setSelect}}>
         {children}
     </FilterContext.Provider>
 };
 
 export default FilterProvider;
+
+    // useEffect(() => {
+    //     !inputValue ? refreshProducts() : refreshProducts(productsFilters);
+    // }, [page]);
+
+    // const refreshProducts = (data = productos, currentPage = page) => {
+    //     const newProducts = paginatedProducts(currentPage, data);
+    //     setRenderProducts(newProducts);
+    // };
+
+    // const switchSelect = (data, caso) => {
+    //     const newData = [...data];
+    //     switch(caso) {
+    //         case 0: setRenderProducts(newData); break;
+    //         case 1: setRenderProducts(newData.sort((a, b) => b.price - a.price)); break;
+    //         case 2: setRenderProducts(newData.sort((a, b) => a.price - b.price)); break;
+    //     };
+    // };
+
+    // const onHandleSelect = (value) => {
+    //     if(inputValue) {
+    //         switchSelect(productsFilters.productos, value);
+    //     } else {
+    //         switchSelect(productos.productos, value);
+    //     };
+    // };
