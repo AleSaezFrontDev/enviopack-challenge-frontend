@@ -4,13 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import CartProvider from './context/cartContext.jsx'
 import FilterProvider from './context/FilterContext.jsx'
+import UserProvider from './context/UserContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <FilterProvider>
-    <CartProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CartProvider>
-  </FilterProvider>
+  <UserProvider>
+    <FilterProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartProvider>
+    </FilterProvider>
+  </UserProvider>
 )

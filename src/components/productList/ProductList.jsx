@@ -3,6 +3,7 @@ import Product from "../product/Product";
 import Filters from "../filters/Filters";
 import Title from "../title";
 import Pagination from "../pagination";
+import AddToCartButton from "../addToCartButton/AddToCartButton";
 
 const ProductList = ({productos}) => {
 
@@ -11,7 +12,7 @@ const ProductList = ({productos}) => {
     <Filters />
         <div>
       <ul>
-        {productos.map((product) => <Product key={product.id} product={product} />)}
+        {productos.map((product) => <div key={product.id}><Product product={product} /><AddToCartButton product={product}/></div>)}
       </ul>
     </div>
     <Pagination />

@@ -9,7 +9,6 @@ const Product = ({product}) => {
         <img src={image} width={100} height={150} />
             <h3>{product?.title}</h3>
             <h3>{product?.price}</h3>
-            <AddToCartButton product={product}/>
         </>
     )
 };
