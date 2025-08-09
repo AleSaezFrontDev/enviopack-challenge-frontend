@@ -8,11 +8,9 @@
 .paginationButton {
   width: 10%;
   padding: 10px;
-  border: none;
+  border: 1px solid black;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s;
-  background-color: #333;
-  color: white;
+  color: black;
 }

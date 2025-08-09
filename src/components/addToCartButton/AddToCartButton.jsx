@@ -13,7 +13,7 @@ const AddToCartButton = ({product}) => {
     };
 
     return <>
-        {addedProduct.find((({id}) => id === product.id)) ? <button className={addToCartButton}><Links to={"/cart"} text="Ver carrito" /></button> : <button className={addToCartButton} onClick={handleChange}>Agregar al carrito</button>}
+        {addedProduct.find((({id}) => id === product.id)) ? <button className={addToCartButton}><Links to={"/cart"} text={"Ver carrito"} /></button> : <button className={addToCartButton} onClick={handleChange}>Agregar al carrito</button>}
     </>
 };
 

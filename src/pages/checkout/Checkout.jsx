@@ -27,7 +27,7 @@ const Checkout = () => {
         {result ?
         <div className={checkoutMessage}>
         <span>La compra se realizo con exito</span>
-        <button className={checkoutButton}><Links to={"/cart"} text="Volver al catálogo" /></button>
+        <button className={checkoutButton}><Links to={"/"} text="Volver al catálogo" /></button>
         </div>
         :
         <div className={checkoutMessage}>

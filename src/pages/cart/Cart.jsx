@@ -45,7 +45,7 @@ const Cart = () => {
 
         <div className={cartButtons}>
           <button className={backButton}><Links to={"/"} text="Volver al catálogo" /></button>
-          <button className={checkoutButton}><Links to={"/checkout"} text="Finalizar compra" /></button>
+          {addedProduct.length > 0 ? <button className={checkoutButton}><Links to={"/checkout"} text="Finalizar compra" /></button> : null}
         </div>
     </main>
 };
