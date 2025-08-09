@@ -1,0 +1,39 @@
+:root {
+  --margin-span-header: 20px;
+}
+
+.headerComponent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 20px 20px;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerTitle {
+    font-weight: bold;
+}
+
+.headerContentSpan {
+  margin-left: 15px;
+  margin-right: var(--margin-span-header)
+}
+
+.headerContentCart {
+  color: #1abc9c;
+  font-weight: bold;
+  margin-right: var(--margin-span-header)
+}
+
+.headerContentCredit {
+  color: #fff;
+  margin-right: var(--margin-span-header)
+}

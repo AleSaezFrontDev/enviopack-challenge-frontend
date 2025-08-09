@@ -1,24 +1,28 @@
 import React, {useContext} from "react";
 import { FilterContext } from "../../context/FilterContext";
+import styles from "./filters.module.css";
 
 const Filters = () => {
 
     const {setInputValue, setSelect} = useContext(FilterContext);
+    const {filtersDiv, searchInput, sortBy, sortBySpan, sortBySelect} = styles;
 
-    return <div>
-        <input onChange={({target}) => {
+    return <div className={filtersDiv}>
+        <input className={searchInput} onChange={({target}) => {
             if(target.value !== "") setInputValue(target.value);
             else setInputValue(1);
             
-        }} placeholder="Buscar productos por nombre"></input>
-        <span>Ordenar por</span>
-        <select onChange={({target}) => {
+        }} type="text" placeholder="Buscar productos por nombre"></input>
+        <div className={sortBy}>
+        <span className={sortBySpan}>ORDENAR POR</span>
+        <select className={sortBySelect} onChange={({target}) => {
             setSelect(Number(target.value));
         }}>
             <option value={0}>Seleccionar</option>
-            <option value={2}>Mas baratos</option>
-            <option value={1}>mas caros</option>
+            <option value={2}>Más baratos</option>
+            <option value={1}>Más caros</option>
         </select>
+        </div>
     </div>
 };
 

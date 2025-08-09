@@ -1,0 +1,44 @@
+.productDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  text-align: center;
+}
+
+.productImg {
+  width: 150px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.productTitle {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* card del carrito */
+.cartDiv {
+  display: flex;
+  align-items: center;
+}
+
+.cartImg {
+  width: 100px;
+  height: 80px;
+}
+
+.cartTitle {
+  font-size: 1.1em;
+  color: black;
+}
+
+.onlyCartStyle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

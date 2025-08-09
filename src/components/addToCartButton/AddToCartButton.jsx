@@ -1,17 +1,19 @@
 import React, {useContext} from "react";
 import { CartContext } from "../../context/cartContext";
-import { Link } from "react-router-dom";
+import Links from "../links";
+import styles from "./addToCartButton.module.css";
 
 const AddToCartButton = ({product}) => {
 
     const {addedProduct, setAddedProduct} = useContext(CartContext);
+    const {addToCartButton} = styles;
 
     const handleChange = () => {
         setAddedProduct([...addedProduct, {...product}]);
     };
 
     return <>
-        {addedProduct.find((({id}) => id === product.id)) ? <Link to={"/cart"}>Ver carrito</Link> : <button onClick={handleChange}>Agregar al carrito</button>}
+        {addedProduct.find((({id}) => id === product.id)) ? <button className={addToCartButton}><Links to={"/cart"} text="Ver carrito" /></button> : <button className={addToCartButton} onClick={handleChange}>Agregar al carrito</button>}
     </>
 };
 

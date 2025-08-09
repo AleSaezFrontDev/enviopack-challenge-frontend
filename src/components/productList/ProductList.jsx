@@ -4,19 +4,22 @@ import Filters from "../filters/Filters";
 import Title from "../title";
 import Pagination from "../pagination";
 import AddToCartButton from "../addToCartButton/AddToCartButton";
+import styles from "./productList.module.css";
 
 const ProductList = ({productos}) => {
 
-    return <main>
-    <Title text="Catalogo" />
+  const {productsContainer, productsDiv, productsUl} = styles;
+
+    return <div className={productsContainer}>
+    <Title text="Catálogo" />
     <Filters />
         <div>
-      <ul>
-        {productos.map((product) => <div key={product.id}><Product product={product} /><AddToCartButton product={product}/></div>)}
+      <ul className={productsUl}>
+        {productos.map((product) => <div className={productsDiv} key={product.id}><Product product={product} /><AddToCartButton product={product}/></div>)}
       </ul>
     </div>
     <Pagination />
-    </main>
+    </div>
 };
 
 export default ProductList;

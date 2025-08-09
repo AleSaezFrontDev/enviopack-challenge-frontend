@@ -1,0 +1,32 @@
+.filtersDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 250px;
+  background-color: rgb(241, 239, 239);
+}
+
+.sortBy {
+  display: flex;
+  flex-direction: column;
+}
+
+.sortBySpan {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #a1a0a0;
+}
+
+.sortBySelect {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgb(241, 239, 239);
+}

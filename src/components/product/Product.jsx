@@ -1,14 +1,20 @@
 import React from "react";
 import image from "../../../public/img/image-product.jpg";
-import AddToCartButton from "../addToCartButton/AddToCartButton";
+import styles from "./product.module.css";
 
-const Product = ({product}) => {
+const Product = ({product, cart = false}) => {
+
+    const {productDiv, productImg, productTitle, cartDiv, cartImg, cartTitle, onlyCartStyle} = styles;
 
     return (
         <>
-        <img src={image} width={100} height={150} />
-            <h3>{product?.title}</h3>
-            <h3>{product?.price}</h3>
+        <div className={cart ? cartDiv : productDiv}>
+            <img className={cart ? cartImg : productImg} src={image} />
+            <div className={cart ? onlyCartStyle : null}>
+                <p className={cart ? cartTitle : productTitle}>{product?.title}</p>
+                <p className={cart ? cartTitle : productTitle}>$ {product?.price}</p>
+            </div>
+        </div>
         </>
     )
 };

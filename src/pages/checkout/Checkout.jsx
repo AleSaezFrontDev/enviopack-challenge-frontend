@@ -1,13 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
 import { CartContext } from "../../context/cartContext";
 import { UserContext } from "../../context/UserContext";
-import { Link } from "react-router-dom";
+import Links from "../../components/links";
+import Title from "../../components/title";
+import styles from "./checkout.module.css";
 
 const Checkout = () => {
 
     const {totalPurchase, setAddedProduct, setTotalPurchase} = useContext(CartContext);
     const {userCredit, setUserCredit} = useContext(UserContext);
     const [result, setResult] = useState(undefined);
+    const {checkoutMessage, checkoutMain, checkoutButton} = styles;
 
     useEffect(() => {
         if(userCredit >= totalPurchase) {
@@ -19,18 +22,18 @@ const Checkout = () => {
         else setResult(false);
     }, []);
 
-    return <main>
-        <h1>Estado de la Compra</h1>
+    return <main className={checkoutMain}>
+        <Title text={"Estado de la compra"} />
         {result ?
-        <>
+        <div className={checkoutMessage}>
         <span>La compra se realizo con exito</span>
-        <Link to={"/cart"}>volver al catalogo</Link>
-        </>
+        <button className={checkoutButton}><Links to={"/cart"} text="Volver al catálogo" /></button>
+        </div>
         :
-        <>
+        <div className={checkoutMessage}>
         <span>Ocurrio un error con la compra, revisa que el importe no supere el credito disponible en tu cuenta</span>
-        <Link to={"/cart"}>Volver al carrito</Link>
-        </>
+        <button className={checkoutButton}><Links to={"/cart"} text="Volver al carrito" /></button>
+        </div>
         }
     </main>
 };

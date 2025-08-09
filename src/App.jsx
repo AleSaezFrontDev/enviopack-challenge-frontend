@@ -7,14 +7,14 @@ import Catalog from './pages/catalog'
 
 const App = () => {
   return (
-    <>
+    <main className='container'>
       <Header />
       <Routes>
         <Route path="/" element={<Catalog />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
-    </>
+    </main>
   )
 };
 
