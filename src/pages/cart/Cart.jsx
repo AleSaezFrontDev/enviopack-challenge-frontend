@@ -34,7 +34,7 @@ const Cart = () => {
         <Title text="Carrito" />
         <div>
             <ul className={cartUl}>
-        {addedProduct.length > 0 ? addedProduct.map((product => <div className={cartItem} key={product.id}><Product product={product} cart={true} /><button onClick={() => handleDelete(product.id)} className={removeCartButton}>X</button></div>)) : <h4>Carrito vacio</h4>}
+        {addedProduct.length > 0 ? addedProduct.map((product => <div className={cartItem} key={product.id}><Product product={product} cart={true} /><button onClick={() => handleDelete(product.id)} className={removeCartButton}>X</button></div>)) : <h4>Carrito vacío</h4>}
         </ul>
         </div>
 

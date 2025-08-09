@@ -19,7 +19,7 @@ const Header = () => {
           <div className={headerContent}>
             <span className={headerContentSpan}>{profile?.firstName}</span>
             <span className={headerContentCart}><Links to={"/cart"} text={`Carrito (${addedProduct.length})`} /></span>
-            <span className={headerContentCredit}>Credito ${userCredit}</span>
+            <span className={headerContentCredit}>Crédito ${userCredit}</span>
         </div>
       </header>)
 };

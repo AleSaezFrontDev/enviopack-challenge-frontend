@@ -26,12 +26,12 @@ const Checkout = () => {
         <Title text={"Estado de la compra"} />
         {result ?
         <div className={checkoutMessage}>
-        <span>La compra se realizo con exito</span>
+        <span>La compra se realizó con éxito</span>
         <button className={checkoutButton}><Links to={"/"} text="Volver al catálogo" /></button>
         </div>
         :
         <div className={checkoutMessage}>
-        <span>Ocurrio un error con la compra, revisa que el importe no supere el credito disponible en tu cuenta</span>
+        <span>Ocurrió un error con la compra, revisa que el importe no supere el crédito disponible en tu cuenta</span>
         <button className={checkoutButton}><Links to={"/cart"} text="Volver al carrito" /></button>
         </div>
         }
